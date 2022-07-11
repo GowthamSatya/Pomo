@@ -1,5 +1,5 @@
 import React from 'react'
-import BrainIcon from "../../assets/Vector.svg"
+import BrainIcon from "../../assets/Focus.svg"
 
 const PomoState = () => {
     return (
