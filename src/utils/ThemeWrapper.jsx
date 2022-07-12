@@ -16,7 +16,7 @@ const generateColorPalette = (darkTheme, color) => {
                 fillColor: "fill-myred-50",
                 textColor: "text-myred-50",
                 borderColor: "border-myred-50",
-                mainBtnColor: `bg-redAlpha-${color === "red" ? '700' : '600'}`,
+                mainBtnColor: "bg-redAlpha-600",
             }
         } else if (color == "green") {
             generatedTheme = {
@@ -26,7 +26,7 @@ const generateColorPalette = (darkTheme, color) => {
                 fillColor: "fill-mygreen-50",
                 textColor: "text-mygreen-50",
                 borderColor: "border-mygreen-50",
-                mainBtnColor: `bg-greenAlpha-${color === "red" ? '700' : '600'}`,
+                mainBtnColor: "bg-greenAlpha-600",
             }
         } else {
             generatedTheme = {
@@ -36,7 +36,7 @@ const generateColorPalette = (darkTheme, color) => {
                 fillColor: "fill-myblue-50",
                 textColor: "text-myblue-50",
                 borderColor: "border-myblue-50",
-                mainBtnColor: `bg-blueAlpha-${color === "red" ? '700' : '600'}`,
+                mainBtnColor: "bg-blueAlpha-600",
             }
         }
     } else {
@@ -48,7 +48,7 @@ const generateColorPalette = (darkTheme, color) => {
                 fillColor: "fill-myred-900",
                 textColor: "text-myred-900",
                 borderColor: "border-myred-900",
-                mainBtnColor: `bg-redAlpha-${color === "red" ? '700' : '600'}`,
+                mainBtnColor: "bg-redAlpha-700"
             }
         } else if (color == "green") {
             generatedTheme = {
@@ -58,7 +58,7 @@ const generateColorPalette = (darkTheme, color) => {
                 fillColor: "fill-mygreen-900",
                 textColor: "text-mygreen-900",
                 borderColor: "border-mygreen-900",
-                mainBtnColor: `bg-greenAlpha-${color === "red" ? '700' : '600'}`,
+                mainBtnColor: "bg-greenAlpha-600",
             }
         } else {
             generatedTheme = {
@@ -68,7 +68,7 @@ const generateColorPalette = (darkTheme, color) => {
                 fillColor: "fill-myblue-900",
                 textColor: "text-myblue-900",
                 borderColor: "border-myblue-900",
-                mainBtnColor: `bg-blueAlpha-${color === "red" ? '700' : '600'}`,
+                mainBtnColor: "bg-blueAlpha-600",
             }
         }
     }
