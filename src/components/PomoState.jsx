@@ -2,20 +2,22 @@ import React, { useState } from 'react'
 import { useTheme } from "../utils/ThemeWrapper"
 import { BreakIcon, FocusIcon } from '../utils/MyIcons'
 import { useTimer } from '../utils/TimerContext';
+import { FOCUS, SHORT_BREAK } from '../constants';
+import { useSettings } from '../utils/SettingsContext';
 
 const PomoState = () => {
     const { color } = useTheme();
-    const { timerState } = useTimer();
+    const { settings } = useSettings();
 
     let PomoStatusData = null;
-    if (timerState === 'timer') {
+    if (settings.name === FOCUS) {
         PomoStatusData = (
             <>
                 <FocusIcon size={18} className={`ml-2 mt-[2px]`} color={`${color.fillColor}`} />
                 <p className={`mx-2 font-medium ${color.textColor}`}>Focus</p>
             </>
         )
-    } else if (timerState === 'shortBreak') {
+    } else if (settings.name === SHORT_BREAK) {
         PomoStatusData = (
 
             <>

@@ -3,28 +3,26 @@ import { FastForwardIcon, MoreDotsIcon, PauseIcon, PlayIcon } from '../utils/MyI
 import { useTheme } from "../utils/ThemeWrapper"
 import { useTimer } from "../utils/TimerContext"
 
+
+
 const ButtonGroup = () => {
     const { color } = useTheme();
-    const [timerPaused, setTimerPaused] = useState(true);
-    const { toggleTimerState } = useTimer()
+    const { ticking, toggleTimer, toggleSettingsModal, nextState } = useTimer()
 
-    const toggleTimer = () => {
-        setTimerPaused(!timerPaused)
-    }
     return (
         <div className='my-2 flex gap-4 items-center justify-center'>
-            <button className={`w-[80px] h-[80px] rounded-3xl settings-btn flex items-center justify-center ${color.iconBgColor}`}>
+            <button onClick={toggleSettingsModal} className={`w-[80px] h-[80px] rounded-3xl settings-btn flex items-center justify-center ${color.iconBgColor}`}>
                 <MoreDotsIcon size={28} className='mt-0.5 ml-0.5' color={`${color.fillColor}`} />
             </button>
             <button onClick={toggleTimer} className={`w-[128px] h-[96px]  rounded-[32px] settings-btn flex items-center justify-center ${color.mainBtnColor}`}>
-                {timerPaused ? (
-                    <PlayIcon size={32} className='flex items-center justify-center mt-0.5' color={`${color.fillColor}`} />
+                {!ticking ? (
+                    <PlayIcon size={32} className='flex items-center justify-center' color={`${color.fillColor}`} />
                 ) : (
-                    <PauseIcon size={32} className='flex items-center justify-center mt-0.5' color={`${color.fillColor}`} />
+                    <PauseIcon size={32} className='flex items-center justify-center' color={`${color.fillColor}`} />
                 )}
 
             </button>
-            <button onClick={() => toggleTimerState('timer')} className={`w-[80px] h-[80px] rounded-3xl settings-btn flex items-center justify-center ${color.iconBgColor}`}>
+            <button onClick={nextState} className={`w-[80px] h-[80px] rounded-3xl settings-btn flex items-center justify-center ${color.iconBgColor}`}>
                 <FastForwardIcon size={28} className='ml-0.5' color={`${color.fillColor}`} />
             </button>
         </div>
