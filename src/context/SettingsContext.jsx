@@ -8,7 +8,7 @@ export const useSettings = () => {
 
 export const SettingsWrapper = ({ children }) => {
     const initialState = {
-        name: FOCUS,
+        state: FOCUS,
         round: 1,
         autoResume: false,
         longBreakInterval: 10,
@@ -33,18 +33,33 @@ export const SettingsWrapper = ({ children }) => {
     const [settings, modifySettings] = useState(initialState)
 
     const updateRound = () => {
+        settings.round++;
         modifySettings({
             ...settings,
             round: settings.round++
         })
     }
 
-    const updateState = (id) => {
+    const resetRound = () => {
         modifySettings({
             ...settings,
-            name: id
+            round: 1
         })
-        console.log(settings);
+    }
+
+    const updateLongBreakInterval = (value) => {
+        modifySettings({
+            ...settings,
+            longBreakInterval: value
+        })
+    }
+
+    const updateState = (id) => {
+        settings.state = id;
+        modifySettings({
+            state: id,
+            ...settings
+        })
     }
 
     const updateTimeLength = ({ id, length }) => {
@@ -68,7 +83,7 @@ export const SettingsWrapper = ({ children }) => {
     }
 
     return (
-        <SettingsContext.Provider value={{ settings, updateRound, updateState, updateTimeLength, updateAutoResume }}>
+        <SettingsContext.Provider value={{ settings, updateRound, updateState, updateTimeLength, updateAutoResume, updateLongBreakInterval, resetRound }}>
             {children}
         </SettingsContext.Provider>
     )

@@ -1,23 +1,22 @@
-import React, { useState } from 'react'
-import { useTheme } from "../utils/ThemeWrapper"
+import React from 'react'
+import { useTheme } from "../context/ThemeWrapper"
 import { BreakIcon, FocusIcon } from '../utils/MyIcons'
-import { useTimer } from '../utils/TimerContext';
 import { FOCUS, SHORT_BREAK } from '../constants';
-import { useSettings } from '../utils/SettingsContext';
+import { useSettings } from '../context/SettingsContext';
 
 const PomoState = () => {
     const { color } = useTheme();
     const { settings } = useSettings();
 
     let PomoStatusData = null;
-    if (settings.name === FOCUS) {
+    if (settings.state === FOCUS) {
         PomoStatusData = (
             <>
                 <FocusIcon size={18} className={`ml-2 mt-[2px]`} color={`${color.fillColor}`} />
                 <p className={`mx-2 font-medium ${color.textColor}`}>Focus</p>
             </>
         )
-    } else if (settings.name === SHORT_BREAK) {
+    } else if (settings.state === SHORT_BREAK) {
         PomoStatusData = (
 
             <>
