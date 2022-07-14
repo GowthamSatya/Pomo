@@ -13,7 +13,7 @@ const SettingTile = ({ type, checked, value, name, onChange, state, variant }) =
     const [btnColor, setBtnColor] = useState(theme.colors.myred)
     const { darkTheme, color } = useTheme()
     const inputRef = useRef();
-    const { updateTimeLength } = useSettings()
+    const { updateTimeLength, updateLongBreakInterval } = useSettings()
 
     useEffect(() => {
         if (variant === "red") setBtnColor(theme.colors.myred)
@@ -23,12 +23,16 @@ const SettingTile = ({ type, checked, value, name, onChange, state, variant }) =
 
     const IncrementValue = () => {
         inputRef.current.stepUp();
-        updateTimeLength({ id: inputRef.current.id, length: inputRef.current.value })
+        if (state === "Interval") updateLongBreakInterval(parseInt(inputRef.current.value))
+        else
+            updateTimeLength({ id: inputRef.current.id, length: inputRef.current.value })
     }
 
     const DecrementValue = () => {
         inputRef.current.stepDown()
-        updateTimeLength({ id: inputRef.current.id, length: inputRef.current.value })
+        if (state === "Interval") updateLongBreakInterval(parseInt(inputRef.current.value))
+        else
+            updateTimeLength({ id: inputRef.current.id, length: inputRef.current.value })
     }
 
     return (
@@ -53,7 +57,7 @@ const SettingTile = ({ type, checked, value, name, onChange, state, variant }) =
                         value={value}
                         onChange={onChange}
                         type="number"
-                        min={0}
+                        min={1}
                         max={99}
                         maxLength="2"
                         className={`overflow-hidden border ${darkTheme ? "border-whiteAlpha-100" : "border-blackAlpha-100"} ${color.textColor} outline-none p-2 pr-6 w-16 hover:none rounded-md h-10 ${color.iconBgColor}`}
