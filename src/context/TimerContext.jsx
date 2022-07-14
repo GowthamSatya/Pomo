@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useCallback } from "react"
 import useCountdown from "../hooks/useCountdown";
 import { useSettings } from "./SettingsContext";
-import { FOCUS, LONG_BREAK, NEXT_STATE_ALERT, POMO_END_ALERT, SHORT_BREAK, FOCUS_STATE_ALERT } from "../constants";
+import { FOCUS, LONG_BREAK, NEXT_STATE_ALERT, POMO_END_ALERT, SHORT_BREAK, FOCUS_STATE_ALERT, RESTART_POMO_ALERT } from "../constants";
 import { useTheme } from "./ThemeWrapper";
 
 const TimerContext = createContext();
@@ -82,12 +82,12 @@ export const TimerWrapper = ({ children }) => {
             let allowed = true;
             if (settings.state === LONG_BREAK) {
                 alert(POMO_END_ALERT);
-                allowed = confirm(NEXT_STATE_ALERT);
             }
             if (ticking) {
                 stop();
                 if (settings.state === FOCUS) allowed = confirm(NEXT_STATE_ALERT)
-                else allowed = confirm(FOCUS_STATE_ALERT)
+                else if (settings.state === SHORT_BREAK) allowed = confirm(FOCUS_STATE_ALERT)
+                else allowed = confirm(RESTART_POMO_ALERT)
                 start();
             }
 

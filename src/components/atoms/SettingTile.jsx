@@ -8,7 +8,7 @@ import { useSettings } from '../../context/SettingsContext';
 import { useEffect } from 'react';
 import { useState } from 'react';
 
-const SettingTile = ({ type, checked, value, name, onChange, state, variant }) => {
+const SettingTile = ({ type, checked, value, name, onChange, state, variant, min, max }) => {
     const { theme } = resolveConfig(tailwindConfig)
     const [btnColor, setBtnColor] = useState(theme.colors.myred)
     const { darkTheme, color } = useTheme()
@@ -57,8 +57,8 @@ const SettingTile = ({ type, checked, value, name, onChange, state, variant }) =
                         value={value}
                         onChange={onChange}
                         type="number"
-                        min={1}
-                        max={99}
+                        min={min}
+                        max={max}
                         maxLength="2"
                         className={`overflow-hidden border ${darkTheme ? "border-whiteAlpha-100" : "border-blackAlpha-100"} ${color.textColor} outline-none p-2 pr-6 w-16 hover:none rounded-md h-10 ${color.iconBgColor}`}
                     />

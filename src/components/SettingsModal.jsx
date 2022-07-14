@@ -26,7 +26,7 @@ const SettingsModal = () => {
                             if (e.target.value.length > e.target.maxLength)
                                 e.target.value = e.target.value.slice(0, e.target.maxLength)
                             updateTimeLength({ id, length: e.target.value })
-                        }} value={length} state={id} key={id} name={label} />
+                        }} value={length} state={id} key={id} name={label} min={1} max={99} />
                     ))}
 
                     <SettingTile onChange={(e) => {
@@ -34,7 +34,7 @@ const SettingsModal = () => {
                             e.target.value = e.target.value.slice(0, e.target.maxLength)
                         updateLongBreakInterval(+e.target.value)
 
-                    }} value={settings.longBreakInterval} state="Interval" name="Pomodoros until long break" />
+                    }} value={settings.longBreakInterval} min={settings.round} state="Interval" name="Pomodoros until long break" />
 
                     <SettingTile name="Auto Resume Timer" checked={settings.autoResume} onChange={updateAutoResume} type="switch" variant={color.themeColor} />
                 </div>
