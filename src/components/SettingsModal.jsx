@@ -34,7 +34,7 @@ const SettingsModal = () => {
                             e.target.value = e.target.value.slice(0, e.target.maxLength)
                         updateLongBreakInterval(+e.target.value)
 
-                    }} value={settings.longBreakInterval} name="Pomodoros until long break" />
+                    }} value={settings.longBreakInterval} state="Interval" name="Pomodoros until long break" />
 
                     <SettingTile name="Auto Resume Timer" checked={settings.autoResume} onChange={updateAutoResume} type="switch" variant={color.themeColor} />
                 </div>
