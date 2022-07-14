@@ -12,7 +12,12 @@ export default defineConfig({
   },
   optimizeDeps: {
     include: [
-      'tailwind.config.js',
+      path.resolve(__dirname, 'tailwind.config.js'),
     ]
-  }
+  },
+  build: {
+    commonjsOptions: {
+      include: ['tailwind.config.js', 'node_modules/**'],
+    },
+  },
 })
