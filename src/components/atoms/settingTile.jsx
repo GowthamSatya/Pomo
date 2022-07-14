@@ -1,21 +1,34 @@
 import React, { useRef } from 'react'
 import Switch from "react-switch";
-import { useTheme } from '../../utils/ThemeWrapper';
+import { useTheme } from '../../context/ThemeWrapper';
 import resolveConfig from 'tailwindcss/resolveConfig'
 import tailwindConfig from 'tailwind.config.js'
 import { VscTriangleUp, VscTriangleDown } from "react-icons/vsc"
+import { useSettings } from '../../context/SettingsContext';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
-const SettingTile = ({ type, checked, value, name, onChange }) => {
+const SettingTile = ({ type, checked, value, name, onChange, state, variant }) => {
     const { theme } = resolveConfig(tailwindConfig)
+    const [btnColor, setBtnColor] = useState(null)
     const { darkTheme, color } = useTheme()
     const inputRef = useRef();
+    const { updateTimeLength } = useSettings()
+
+    useEffect(() => {
+        if (variant === "red") setBtnColor(theme.colors.myred)
+        else if (variant === "green") setBtnColor(theme.colors.mygreen)
+        else setBtnColor(theme.colors.myblue)
+    }, [])
 
     const IncrementValue = () => {
         inputRef.current.stepUp();
+        updateTimeLength({ id: inputRef.current.id, length: inputRef.current.value })
     }
 
     const DecrementValue = () => {
         inputRef.current.stepDown()
+        updateTimeLength({ id: inputRef.current.id, length: inputRef.current.value })
     }
 
     return (
@@ -27,15 +40,16 @@ const SettingTile = ({ type, checked, value, name, onChange }) => {
                     checked={checked}
                     uncheckedIcon={false}
                     checkedIcon={false}
-                    onColor={theme.colors.myred[300]}
-                    onHandleColor={theme.colors.myred[50]}
-                    offHandleColor={theme.colors.myred[50]}
+                    onColor={btnColor[300]}
+                    onHandleColor={btnColor[50]}
+                    offHandleColor={btnColor[50]}
                     handleDiameter={15} width={34} height={20}
                 />
             ) : (
                 <div className='relative'>
                     <input
                         ref={inputRef}
+                        id={state}
                         value={value}
                         onChange={onChange}
                         type="number"

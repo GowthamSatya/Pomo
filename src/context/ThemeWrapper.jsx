@@ -10,7 +10,7 @@ const generateColorPalette = (darkTheme, color) => {
     if (darkTheme) {
         if (color === "red") {
             generatedTheme = {
-                themeColor: "myred",
+                themeColor: "red",
                 backgroundColor: "bg-myred-950",
                 iconBgColor: "bg-redAlpha-100",
                 fillColor: "fill-myred-50",
