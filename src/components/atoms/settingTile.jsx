@@ -10,7 +10,7 @@ import { useState } from 'react';
 
 const SettingTile = ({ type, checked, value, name, onChange, state, variant }) => {
     const { theme } = resolveConfig(tailwindConfig)
-    const [btnColor, setBtnColor] = useState(null)
+    const [btnColor, setBtnColor] = useState(theme.colors.myred)
     const { darkTheme, color } = useTheme()
     const inputRef = useRef();
     const { updateTimeLength } = useSettings()
